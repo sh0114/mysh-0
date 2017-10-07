@@ -41,7 +41,7 @@ int validate_cd_argv(int argc, char** argv) {
 
 int validate_pwd_argv(int argc, char** argv) {
   // TODO: Fill it!
-	if((strcmp(argv[0],"pwd") == 0)&& argc == ){
+	if((strcmp(argv[0],"pwd") == 0)&& argc == 1){
 		char str[1024];
 		getcwd(str, sizeof(str));
 		printf("%s\n", str);
