@@ -8,35 +8,37 @@ void mysh_parse_command(const char* command,
                         int *argc, char*** argv)
 {
 
-	char* arg[100];
+	char* token[1000];
 	char* s = " \t\n";
-
-	char str[100];
+	char str[1000];
 
 	strcpy(str,command);
 	str[strlen(str)] = 0;
- 	arg[0] = strtok(str, s);
 
-
+ 	token[0] = strtok(str, s);
 	(*argc) = 1;
-	if(arg[0]){
-	while(arg[*argc] = strtok(NULL,s))
-	{
-		(*argc)++;
-	}
 
-	(*argv) = (char**)malloc(sizeof(char*) * (*argc));
-
-	for(int i = 0 ; i<(*argc) ; i++)
+	if(token[0] != NULL)
 	{
-		(*argv)[i] = (char*)malloc(sizeof(char)*strlen(arg[i])+1);
-	 	strcpy((*argv)[i],arg[i]);
-  	}
+		while(token[*argc] = strtok(NULL,s))
+		{
+			(*argc)++;
+		}	
+
+		(*argv) = (char**)malloc((*argc) * sizeof(char*));
+
+		for(int i = 0 ; i<(*argc) ; i++)
+		{
+			(*argv)[i] = (char*)malloc(strlen(token[i]) * sizeof(char) + 1);
+	 		strcpy((*argv)[i],token[i]);
+  		}
 	
 	}
-	else{
+	else
+	{
 		(*argv) = (char**)malloc(sizeof(char*));
-		(*argv)[0] = (char*)malloc(sizeof(char*)+1);
+		(*argv)[0] = (char*)malloc(sizeof(char)+1);
 		strcpy((*argv)[0],"");
 	}
+
 }
